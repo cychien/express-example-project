@@ -1,6 +1,11 @@
 var express = require('express');
+var hbs = require('hbs');
 
 var app = express();
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'hbs');
+app.set('view options', {layout: './layout/main.hbs'});
 
 app.set('port', process.env.PORT || 3000);
 
