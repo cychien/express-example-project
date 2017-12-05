@@ -7,11 +7,18 @@ var app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
-app.set('view options', {layout: './layout/main.hbs'});
+app.set('view options', {layout: './layouts/main.hbs'});
 
 app.set('port', process.env.PORT || 3000);
 
 hbs.registerPartials(__dirname + '/views/partials');
+
+//section Helper
+hbs.registerHelper('section', function(name, options) {
+    if(!this._sections)
+        this._sections = {};
+    this._sections[name] = options.fn(this);
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -63,6 +70,9 @@ app.get('/tours/oregon-coast', function(req, res){
 });
 app.get('/tours/request-group-rate', function(req, res){
 	res.render('tours/request-group-rate');
+});
+app.get('/nursery-rhyme', function(req, res) {
+    res.render('nursery-rhyme');
 });
 
 // 404 catch-all handler (middleware)
