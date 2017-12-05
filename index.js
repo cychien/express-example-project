@@ -74,6 +74,14 @@ app.get('/tours/request-group-rate', function(req, res){
 app.get('/nursery-rhyme', function(req, res) {
     res.render('nursery-rhyme');
 });
+app.get('/data/nursery-rhyme', function(req, res) {
+    res.json({
+        animal: 'squirrel',
+        bodyPart: 'tail',
+        adjective: 'bushy',
+        noun: 'heck'
+    });
+});
 
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next){
